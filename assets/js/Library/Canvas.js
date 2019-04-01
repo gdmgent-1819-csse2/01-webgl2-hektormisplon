@@ -2,6 +2,11 @@ import Vector2 from './Math/Vector2.js'
 
 /** Class representing a canvas element for WebGL2 */
 export default class Canvas {
+    /**
+     *  @param {Number} width
+     *  @param {Number} height
+     *  @param {*} shaderSources 
+     */
     constructor(width, height, shaderSources) {
         this.width = width
         this.height = height
@@ -31,7 +36,10 @@ export default class Canvas {
         }, false);
 
     }
-
+    /**
+     * @description Method to update the canvas
+     * @param {*} event 
+     */
     updateCanvasHandler(event) {
         console.log('updateCanvas')
         this.clearData()
@@ -60,7 +68,9 @@ export default class Canvas {
 
         this.drawScene()
     }
-
+    /**
+     * Run the canvas application
+     */
     run() {
         try {
             this.createCanvas()
@@ -84,19 +94,26 @@ export default class Canvas {
             console.error(error)
         }
     }
-
+    /**
+     * Clear the canvas
+     */
     clearData() {
         this.data = {
             colors: [],
             positions: [],
         }
     }
-
+    /**
+     * Create the buffers for color & position
+     */
     createBuffers() {
         this.createBuffer('COLOR')
         this.createBuffer('POSITION')
     }
-
+    /**
+     * Create a buffer by type
+     * @param {String} bufferType
+     */
     createBuffer(bufferType) {
         const gl = this.gl
         const program = this.program
@@ -136,7 +153,9 @@ export default class Canvas {
         gl.enableVertexAttribArray(index)
         gl.vertexAttribPointer(index, size, type, normalized, stride, offset) // @see https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttribPointer
     }
-
+    /**
+     * Create and render the canvas element in the DOM
+     */
     createCanvas() {
         const canvas = document.createElement('canvas')
         document.querySelector('.canvas-container').appendChild(canvas)
@@ -146,7 +165,9 @@ export default class Canvas {
         gl.clearColor(0, 0, 0, 0) // @see https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/clearColor
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height) // @see https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/viewport
     }
-
+    /**
+     * Create the shader program
+     */
     createProgram() {
         const gl = this.gl
 
@@ -164,14 +185,19 @@ export default class Canvas {
             gl.deleteProgram(program)
         }
     }
-
+    /**
+     * Create vertex & fragment shader
+     */
     createShaders() {
         const gl = this.gl
 
         this.vertexShader = this.createShader(gl.VERTEX_SHADER)
         this.fragmentShader = this.createShader(gl.FRAGMENT_SHADER)
     }
-
+    /**
+     * Create a shader by type
+     * @param {*} type 
+     */
     createShader(type) {
         const gl = this.gl
 
@@ -199,14 +225,18 @@ export default class Canvas {
         console.error(type, gl.getShaderInfoLog(shader))
         gl.deleteShader(shader)
     }
-
+    /**
+     * Creates an array of verteces
+     */
     createVertexArray() {
         const gl = this.gl
 
         const vertexArray = gl.createVertexArray()
         gl.bindVertexArray(vertexArray)
     }
-
+    /**
+     * Draw out the scene using the currently defined data
+     */
     drawScene() {
         const gl = this.gl
 
