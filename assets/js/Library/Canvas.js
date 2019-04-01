@@ -139,7 +139,7 @@ export default class Canvas {
 
     createCanvas() {
         const canvas = document.createElement('canvas')
-        document.body.appendChild(canvas)
+        document.querySelector('.canvas-container').appendChild(canvas)
         canvas.height = this.height
         canvas.width = this.width
         const gl = this.gl = canvas.getContext('webgl2')

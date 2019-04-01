@@ -7,6 +7,7 @@
     <title> 01 | WebGL2</title>
     <script src="assets/js/main.js" type="module"></script>
     <link rel="stylesheet" href="assets/css/milligram.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <br>
@@ -17,10 +18,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="column">
+            <div class="column  canvas-container">
                 <p>Check the browser console</p>
             </div>
-        </div>    
+        </div>
+        <div class="row">
+            <div class="column">
+                <button onclick="window.dispatchEvent(new Event('updateCanvas'))">Update</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>

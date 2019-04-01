@@ -1,4 +1,4 @@
-import Canvas from '/Library/Canvas.js'
+import Canvas from './Library/Canvas.js'
 import Tests from './Tests/Tests.js'
 
 /** Class for the application. */
